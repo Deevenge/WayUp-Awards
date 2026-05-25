@@ -21,6 +21,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
     background:
         radial-gradient(circle at top left, rgba(212, 175, 55, 0.14), transparent 15%),
         linear-gradient(180deg, #030303 0%, #0d0d0d 100%);
@@ -1271,32 +1272,6 @@ body.overlay-open .page-shell > *:not(.categories-overlay) {
 .premium-form textarea {
     resize: vertical;
     min-height: 130px;
-}
-
-.upload-box {
-    border: 2px dashed rgba(245, 232, 180, 0.26);
-    border-radius: 20px;
-    padding: 1rem;
-    text-align: center;
-    margin-bottom: 1rem;
-}
-
-.upload-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.7rem;
-    color: var(--gold-soft);
-    cursor: pointer;
-}
-
-.upload-box input {
-    display: none;
-}
-
-.upload-box small {
-    display: block;
-    margin-top: 0.7rem;
-    color: var(--muted);
 }
 
 .checkbox-group {

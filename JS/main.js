@@ -249,7 +249,7 @@ function initLuxuryOverlay() {
                     formInput.value = item;
                     label.textContent = item;
                     closeOverlay();
-                    if (formElement) formElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    if (formElement) formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 });
                 subGrid.appendChild(card);
             });
