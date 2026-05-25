@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="CSS/style.css?v=20260524-1">
+    <link rel="stylesheet" href="CSS/style.css?v=20260525-1">
 </head>
 <body>
     <div class="page-shell">
@@ -88,10 +88,11 @@
                     <a href="#gallery" class="showcase-card">
                         <div class="showcase-image-slideshow">
                             <img src="Images/p2.jpg" alt="Ceremony backdrop" class="active">
-                            <img src="Images/IMG-20260524-WA0001.jpg" alt="Award moment">
-                            <img src="Images/IMG-20260524-WA0002.jpg" alt="Award moment">
-                            <img src="Images/IMG-20260524-WA0004.jpg" alt="Award moment">
-                            <img src="Images/IMG-20260524-WA0006.jpg" alt="Award moment">
+                            <img src="Images/happy.jpg" alt="Award moment">
+                            <img src="Images/perform.jpg" alt="Award moment">
+                            <img src="Images/blo.jpg" alt="Award moment">
+                            <img src="Images/gents.jpg" alt="Award moment">
+                             <img src="Images/vino.jpg" alt="Award moment">
                         </div>
                         <div>
                             <p class="mini-label">Featured Moments</p>
@@ -138,7 +139,7 @@
                             </figcaption>
                         </figure>
                         <figure class="about-mini-card">
-                            <img src="Images/IMG-20260524-WA0006.jpg" alt="Premium event setup">
+                            <img src="Images/m2.jpg" alt="Premium event setup">
                             <figcaption>
                                 <p class="mini-label">Premium setup</p>
                                 <span>Curated visuals and polished stage energy.</span>
@@ -216,8 +217,30 @@
                         </div>
 
                         <div class="form-group dynamic-field-container" id="dynamicFieldContainer">
-                            <label id="dynamicFieldLabel" for="dynamicDetails">Additional Details</label>
-                            <input type="text" id="dynamicDetails" name="category_specific_details" class="glow-input" placeholder="...">
+                            <div class="dynamic-field-shell">
+                                <div class="dynamic-field-section" id="songDynamicFields">
+                                    <p class="dynamic-field-note">Add your song details to help reviewers verify the nomination quickly.</p>
+                                    <div class="dynamic-field-grid">
+                                        <div class="form-group">
+                                            <label for="songTitle">Song Title</label>
+                                            <input type="text" id="songTitle" name="song_title" class="glow-input" placeholder="Enter the song title" data-dynamic-song>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="songArtist">Song Artist</label>
+                                            <input type="text" id="songArtist" name="song_artist" class="glow-input" placeholder="Enter the song artist" data-dynamic-song>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="songLink">Link to the Song</label>
+                                        <input type="url" id="songLink" name="song_link" class="glow-input" placeholder="https://open.spotify.com/track/..." data-dynamic-song>
+                                    </div>
+                                </div>
+
+                                <div class="dynamic-field-section active" id="portfolioDynamicField">
+                                    <label for="dynamicDetails">Link to your Work / Portfolio Page</label>
+                                    <input type="text" id="dynamicDetails" name="category_specific_details" class="glow-input" placeholder="https://youtube.com/yourwork / https://instagram.com/yourportfolio / https://yourwebsite.com">
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -284,10 +307,10 @@
 
                     <div class="gallery-marquee-shell">
                         <div class="gallery-marquee-track" id="galleryMarqueeTrack">
-                            <button type="button" class="gallery-marquee-card" data-preview="Images/IMG-20260524-WA0001.jpg" data-title="Arrival energy" aria-label="Open arrival energy image">
+                            <button type="button" class="gallery-marquee-card" data-preview="Images/dance.jpg" data-title="Arrival energy" aria-label="Open arrival energy image">
                                 <span class="gallery-card-pill">Way Up Awards</span>
                                 <div class="gallery-card-frame">
-                                    <img src="Images/IMG-20260524-WA0001.jpg" alt="Red carpet arrival moment">
+                                    <img src="Images/dance.jpg" alt="Red carpet arrival moment">
                                 </div>
                             </button>
                             <button type="button" class="gallery-marquee-card" data-preview="Images/IMG-20260524-WA0002.jpg" data-title="Recognition moment" aria-label="Open recognition moment image">
@@ -296,10 +319,10 @@
                                     <img src="Images/IMG-20260524-WA0002.jpg" alt="Award presentation moment">
                                 </div>
                             </button>
-                            <button type="button" class="gallery-marquee-card" data-preview="Images/IMG-20260524-WA0004.jpg" data-title="Shared excitement" aria-label="Open shared excitement image">
+                            <button type="button" class="gallery-marquee-card" data-preview="Images/p1.jpg" data-title="Shared excitement" aria-label="Open shared excitement image">
                                 <span class="gallery-card-pill">Way Up Awards</span>
                                 <div class="gallery-card-frame">
-                                    <img src="Images/IMG-20260524-WA0004.jpg" alt="Community celebration scene">
+                                    <img src="Images/p1.jpg" alt="Community celebration scene">
                                 </div>
                             </button>
                             <button type="button" class="gallery-marquee-card" data-preview="Images/IMG-20260524-WA0006.jpg" data-title="Premium staging" aria-label="Open premium staging image">
@@ -314,10 +337,10 @@
                                     <img src="Images/IMG-20260524-WA0007.jpg" alt="Crowd reaction and celebration">
                                 </div>
                             </button>
-                            <button type="button" class="gallery-marquee-card" data-preview="Images/IMG-20260524-WA0009.jpg" data-title="Every detail counts" aria-label="Open every detail counts image">
+                            <button type="button" class="gallery-marquee-card" data-preview="Images/m1.jpg" data-title="Every detail counts" aria-label="Open every detail counts image">
                                 <span class="gallery-card-pill">Way Up Awards</span>
                                 <div class="gallery-card-frame">
-                                    <img src="Images/IMG-20260524-WA0009.jpg" alt="Close-up of the celebration">
+                                    <img src="Images/m1.jpg" alt="Close-up of the celebration">
                                 </div>
                             </button>
 
@@ -327,34 +350,46 @@
                                     <img src="Images/IMG-20260524-WA0001.jpg" alt="Red carpet arrival moment duplicate">
                                 </div>
                             </button>
-                            <button type="button" class="gallery-marquee-card" data-preview="Images/IMG-20260524-WA0002.jpg" data-title="Recognition moment" aria-label="Open duplicate recognition moment image">
+                            <button type="button" class="gallery-marquee-card" data-preview="Images/ladies.jpg" data-title="Recognition moment" aria-label="Open duplicate recognition moment image">
                                 <span class="gallery-card-pill">Way Up Awards</span>
                                 <div class="gallery-card-frame">
-                                    <img src="Images/IMG-20260524-WA0002.jpg" alt="Award presentation moment duplicate">
+                                    <img src="Images/ladies.jpg" alt="Award presentation moment duplicate">
                                 </div>
                             </button>
-                            <button type="button" class="gallery-marquee-card" data-preview="Images/IMG-20260524-WA0004.jpg" data-title="Shared excitement" aria-label="Open duplicate shared excitement image">
+                            <button type="button" class="gallery-marquee-card" data-preview="Images/t.jpg" data-title="Shared excitement" aria-label="Open duplicate shared excitement image">
                                 <span class="gallery-card-pill">Way Up Awards</span>
                                 <div class="gallery-card-frame">
-                                    <img src="Images/IMG-20260524-WA0004.jpg" alt="Community celebration scene duplicate">
+                                    <img src="Images/t.jpg" alt="Community celebration scene duplicate">
                                 </div>
                             </button>
-                            <button type="button" class="gallery-marquee-card" data-preview="Images/IMG-20260524-WA0006.jpg" data-title="Premium staging" aria-label="Open duplicate premium staging image">
+                            <button type="button" class="gallery-marquee-card" data-preview="Images/v.jpg" data-title="Premium staging" aria-label="Open duplicate premium staging image">
                                 <span class="gallery-card-pill">Way Up Awards</span>
                                 <div class="gallery-card-frame">
-                                    <img src="Images/IMG-20260524-WA0006.jpg" alt="Curated stage setup duplicate">
+                                    <img src="Images/v.jpg" alt="Curated stage setup duplicate">
                                 </div>
                             </button>
-                            <button type="button" class="gallery-marquee-card" data-preview="Images/IMG-20260524-WA0007.jpg" data-title="Pure momentum" aria-label="Open duplicate pure momentum image">
+                            <button type="button" class="gallery-marquee-card" data-preview="Images/h.jpg" data-title="Pure momentum" aria-label="Open duplicate pure momentum image">
                                 <span class="gallery-card-pill">Way Up Awards</span>
                                 <div class="gallery-card-frame">
-                                    <img src="Images/IMG-20260524-WA0007.jpg" alt="Crowd reaction and celebration duplicate">
+                                    <img src="Images/h.jpg" alt="Crowd reaction and celebration duplicate">
                                 </div>
                             </button>
-                            <button type="button" class="gallery-marquee-card" data-preview="Images/IMG-20260524-WA0009.jpg" data-title="Every detail counts" aria-label="Open duplicate every detail counts image">
+                            <button type="button" class="gallery-marquee-card" data-preview="Images/s.jpg" data-title="Every detail counts" aria-label="Open duplicate every detail counts image">
                                 <span class="gallery-card-pill">Way Up Awards</span>
                                 <div class="gallery-card-frame">
-                                    <img src="Images/IMG-20260524-WA0009.jpg" alt="Close-up of the celebration duplicate">
+                                    <img src="Images/s.jpg" alt="Close-up of the celebration duplicate">
+                                </div>
+                            </button>
+                             <button type="button" class="gallery-marquee-card" data-preview="Images/mic.jpg" data-title="Every detail counts" aria-label="Open duplicate every detail counts image">
+                                <span class="gallery-card-pill">Way Up Awards</span>
+                                <div class="gallery-card-frame">
+                                    <img src="Images/mic.jpg" alt="Close-up of the celebration duplicate">
+                                </div>
+                            </button>
+                             <button type="button" class="gallery-marquee-card" data-preview="Images/cute.jpg" data-title="Every detail counts" aria-label="Open duplicate every detail counts image">
+                                <span class="gallery-card-pill">Way Up Awards</span>
+                                <div class="gallery-card-frame">
+                                    <img src="Images/cute.jpg" alt="Close-up of the celebration duplicate">
                                 </div>
                             </button>
                         </div>
@@ -422,7 +457,7 @@
 
                         <div class="contact-card">
                             <h3><i class="fa-solid fa-location-dot"></i> Main Office</h3>
-                            <p>Johannesburg, South Africa</p>
+                            <p>Schweizer-Reneke, South Africa</p>
                         </div>
                         <div class="contact-card">
                             <h3><i class="fa-solid fa-envelope"></i> Email</h3>
@@ -430,7 +465,7 @@
                         </div>
                         <div class="contact-card">
                             <h3><i class="fa-solid fa-phone"></i> Phone</h3>
-                            <p>+27 11 000 0000</p>
+                            <p>060 357 8250</p>
                         </div>
 
                         <div class="social-links">
@@ -479,6 +514,6 @@
 
  
 
-    <script src="JS/main.js?v=20260524-1" defer></script>
+    <script src="JS/main.js?v=20260525-1" defer></script>
 </body>
 </html>

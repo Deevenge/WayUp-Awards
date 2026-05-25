@@ -1,2 +1,6 @@
 No-Code Form Backends (Easiest & Fastest Setup)If you want to launch the site instantly without setting up databases or rewriting complex backend logic, you can change the HTML <form> action using a platform like Formspree or Formspark.How it works: You replace the form tag in your index.html with an endpoint URL provided by the service.The Workflow:html<!-- Example using Formspree -->
 <form action="https://formspree.io" method="POST" enctype="multipart/form-data">
+
+git add .
+git commit -m "updated the gallery section"
+git push

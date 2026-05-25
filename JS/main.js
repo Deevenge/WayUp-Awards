@@ -61,6 +61,76 @@ function initAccordion() {
     });
 }
 
+const SONG_CATEGORIES = new Set([
+    'Best Amapiano song of the year',
+    'Best RnB song of the year',
+    'Best Motswako song of the year',
+    'Best Gospel/ Clap and Tap song of the year',
+    'Best Hip hop song of the year'
+]);
+
+function resetDynamicFields() {
+    const songFields = document.querySelectorAll('[data-dynamic-song]');
+    const portfolioField = document.getElementById('dynamicDetails');
+
+    songFields.forEach((field) => {
+        field.value = '';
+        field.required = false;
+        field.setAttribute('aria-required', 'false');
+    });
+
+    if (portfolioField) {
+        portfolioField.value = '';
+        portfolioField.required = false;
+        portfolioField.setAttribute('aria-required', 'false');
+    }
+}
+
+function updateDynamicCategoryFields() {
+    const hiddenInput = document.getElementById('selectedCategory');
+    const dynamicContainer = document.getElementById('dynamicFieldContainer');
+    const songFieldsContainer = document.getElementById('songDynamicFields');
+    const portfolioFieldContainer = document.getElementById('portfolioDynamicField');
+    const portfolioField = document.getElementById('dynamicDetails');
+    const songFields = document.querySelectorAll('[data-dynamic-song]');
+
+    const selectedCategory = hiddenInput?.value?.trim() || '';
+    const isSongCategory = SONG_CATEGORIES.has(selectedCategory);
+
+    if (!dynamicContainer || !songFieldsContainer || !portfolioFieldContainer || !portfolioField) {
+        return;
+    }
+
+    if (!selectedCategory) {
+        dynamicContainer.classList.remove('active');
+        songFieldsContainer.classList.remove('active');
+        portfolioFieldContainer.classList.remove('active');
+        resetDynamicFields();
+        return;
+    }
+
+    dynamicContainer.classList.add('active');
+    songFieldsContainer.classList.toggle('active', isSongCategory);
+    portfolioFieldContainer.classList.toggle('active', !isSongCategory);
+
+    songFields.forEach((field) => {
+        const required = isSongCategory;
+        field.required = required;
+        field.setAttribute('aria-required', String(required));
+    });
+
+    portfolioField.required = false;
+    portfolioField.setAttribute('aria-required', 'false');
+
+    if (isSongCategory) {
+        portfolioField.value = '';
+    } else {
+        songFields.forEach((field) => {
+            field.value = '';
+        });
+    }
+}
+
 function initFormHandler() {
     const form = document.getElementById('nominationForm');
     const status = document.getElementById('formStatus');
@@ -92,10 +162,7 @@ function initFormHandler() {
                 form.reset();
                 if (hiddenInput) hiddenInput.value = '';
                 if (label) label.textContent = 'No category selected';
-                const dynamicContainer = document.getElementById('dynamicFieldContainer');
-                const dynamicInput = document.getElementById('dynamicDetails');
-                if (dynamicContainer) dynamicContainer.classList.remove('active');
-                if (dynamicInput) dynamicInput.placeholder = '...';
+                updateDynamicCategoryFields();
             } else {
                 status.textContent = 'Oops! There was a problem with your submission. Please try again.';
             }
@@ -172,6 +239,9 @@ function initFormCategoryPicker() {
 
     hiddenInput.value = '';
     label.textContent = 'No category selected';
+
+    hiddenInput.addEventListener('change', updateDynamicCategoryFields);
+    updateDynamicCategoryFields();
 }
 
 function initLuxuryOverlay() {
@@ -190,30 +260,60 @@ function initLuxuryOverlay() {
     if (!overlay || !subGrid || !title || !eyebrow || !copy || !formInput || !label) return;
 
     const categories = {
-        music: {
-            label: 'Music & Arts',
-            copy: 'Explore the local soundscape with refined categories for artists, producers, and new voices.',
-            items: ['Best Local Artist', 'Best Local DJ', 'Song of the Year', 'Rising Star Award', 'Best Music Group']
+        musicArtists: {
+            label: 'Music & Artists',
+            copy: 'Celebrate the voices, crews, and culture-shapers redefining local sound and stage presence.',
+            items: [
+                'Best traditional group of the year',
+                'Best hip hop artist of the year',
+                'Best RnB artist of the year',
+                'Best Gospel artist of the year',
+                'Best Clap and Tap group of the year',
+                'Best Pop artist of the year',
+                'Best Amapiano artist of the year',
+                'Best Motswako artist of the year'
+            ]
         },
-        business: {
-            label: 'Entrepreneurship',
-            copy: 'Highlight small businesses, founders, and modern innovators creating standout community impact.',
-            items: ['Best Small Business', 'Best Restaurant', 'Best Local Fashion Brand', 'Best Nail Tech', 'Best Entrepreneur']
+        tracksSonic: {
+            label: 'Tracks & Sonic Wave',
+            copy: 'Recognise the records, selectors, and sonic moments that move the room and shape the culture.',
+            items: [
+                'Best Amapiano song of the year',
+                'Best RnB song of the year',
+                'Best Motswako song of the year',
+                'Best Gospel/ Clap and Tap song of the year',
+                'Best Hip hop song of the year',
+                'Best DJ of the year',
+                'Best female dj of the year'
+            ]
         },
-        social: {
-            label: 'Social Media',
-            copy: 'Celebrate the digital storytellers, creators, and influencers shaping the culture online.',
-            items: ['Best Vlogger', 'Influencer of the Year', 'TikTok Creator Award', 'Podcast of the Year']
+        creativeArts: {
+            label: 'Creative Arts & Media',
+            copy: 'Highlight the storytellers, visual creators, and performance specialists with strong local influence.',
+            items: [
+                'Best Poet of the year',
+                'Best Graphic designer of the year',
+                'Best Photographer of the year',
+                'Best Visual artist of the year',
+                'Best MC of the year',
+                'Best Content creator/ Influencer of the year',
+                'Best Comedian of the year'
+            ]
         },
-        community: {
-            label: 'Community',
-            copy: 'Recognise community builders, teachers, and organisers creating real local change.',
-            items: ['Best Teacher', 'Community Leader', 'Humanitarian Award']
+        businessLifestyle: {
+            label: 'Business & Lifestyle',
+            copy: 'Showcase the entrepreneurs and lifestyle leaders carving out impact through brand, hustle, and style.',
+            items: [
+                'Best Hustler/entrepreneur of the year',
+                'Best clothing brand of the year'
+            ]
         },
-        lifestyle: {
-            label: 'Lifestyle',
-            copy: 'Showcase style, beauty, wellness, and cultural presence across everyday living.',
-            items: ['Best Makeup Artist', 'Hair Stylist of the Year', 'Best Photographer', 'Cultural Icon Award']
+        other: {
+            label: 'Other Categories',
+            copy: 'A focused space for standout categories that still deserve premium recognition.',
+            items: [
+                'Best Foodlet of the year'
+            ]
         }
     };
 
@@ -232,21 +332,22 @@ function initLuxuryOverlay() {
             if (backBtn) backBtn.style.visibility = 'hidden';
 
             const icons = {
-                music: 'fa-music',
-                business: 'fa-briefcase',
-                social: 'fa-hashtag',
-                community: 'fa-hand-holding-heart',
-                lifestyle: 'fa-gem'
+                musicArtists: 'fa-music',
+                tracksSonic: 'fa-wave-square',
+                creativeArts: 'fa-palette',
+                businessLifestyle: 'fa-briefcase',
+                other: 'fa-circle-question'
             };
 
             Object.keys(categories).forEach(key => {
                 const group = categories[key];
+                const countLabel = group.items.length === 1 ? 'category' : 'categories';
                 const card = document.createElement('article');
                 card.className = 'luxury-sub-card';
                 card.innerHTML = `
                     <i class="fa-solid ${icons[key]} gold-text" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
                     <span>${group.label}</span>
-                    <small class="gold-text">Explore ${group.items.length} categories</small>
+                    <small class="gold-text">Explore ${group.items.length} ${countLabel}</small>
                 `;
                 card.addEventListener('click', () => renderOverlay(key));
                 subGrid.appendChild(card);
@@ -267,30 +368,9 @@ function initLuxuryOverlay() {
                 card.addEventListener('click', () => {
                     formInput.value = item;
                     label.textContent = item;
+                    formInput.dispatchEvent(new Event('change', { bubbles: true }));
 
-                    // Smart logic for dynamic text box
-                    const dynamicContainer = document.getElementById('dynamicFieldContainer');
-                    const dynamicLabel = document.getElementById('dynamicFieldLabel');
-                    const dynamicInput = document.getElementById('dynamicDetails');
-
-                    const songCats = ["Song of the Year", "Best Collaboration", "Music Video of the Year", "Rising Star Award"];
-                    const performerCats = ["Best Local DJ", "Best Vocalist", "Artist of the Year", "Best Local Artist"];
-
-                    if (songCats.includes(item)) {
-                        dynamicContainer.classList.add('active');
-                        dynamicLabel.textContent = "Song Title, Release Date & Streaming Link (Required)";
-                        dynamicInput.placeholder = "deevege-already, 2025-12-25,,https://spotify......";
-                        dynamicInput.required = true;
-                    } else if (performerCats.includes(item)) {
-                        dynamicContainer.classList.add('active');
-                        dynamicLabel.textContent = "Links to Live Sets, Social Portfolios, or Mixes (Optional)";
-                        dynamicInput.placeholder = "e.g. https://soundcloud.com/your-mix, https://instagram.com/portfolio";
-                        dynamicInput.required = false;
-                    } else {
-                        dynamicContainer.classList.remove('active');
-                        dynamicInput.placeholder = "...";
-                        dynamicInput.required = false;
-                    }
+                    updateDynamicCategoryFields();
 
                     closeOverlay();
                     if (formElement) formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
