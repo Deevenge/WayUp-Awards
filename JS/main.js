@@ -74,18 +74,33 @@ function initFormHandler() {
         const hiddenInput = document.getElementById('selectedCategory');
         const label = document.getElementById('selectedCategoryLabel');
 
+        const formData = new FormData(form);
+
         submitBtn.disabled = true;
         submitBtn.textContent = 'Processing Securely...';
         status.textContent = 'Your submission is being verified securely.';
 
-        setTimeout(() => {
-            form.reset();
-            if (hiddenInput) hiddenInput.value = '';
-            if (label) label.textContent = 'No category selected';
+        fetch(form.action, {
+            method: form.method,
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                status.textContent = 'Thank you! Your submission has been securely received and verified.';
+                form.reset();
+                if (hiddenInput) hiddenInput.value = '';
+                if (label) label.textContent = 'No category selected';
+            } else {
+                status.textContent = 'Oops! There was a problem with your submission. Please try again.';
+            }
+        }).catch(error => {
+            status.textContent = 'Submission error. Please check your connection and try again.';
+        }).finally(() => {
             submitBtn.disabled = false;
             submitBtn.textContent = 'Submit My Application';
-            status.textContent = 'Thank you! Your submission has been securely received and verified.';
-        }, 1500);
+        });
     });
 }
 

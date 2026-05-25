@@ -178,32 +178,32 @@
                         </div>
                     </div>
 
-                    <form id="nominationForm" class="premium-form reveal-on-scroll">
+                    <form id="nominationForm" class="premium-form reveal-on-scroll" action="https://formspree.io/f/xykvdazr" method="POST">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="artistName">Artist Name</label>
-                                <input type="text" id="artistName" placeholder="Enter the artist's full name" required>
+                                <input type="text" id="artistName" name="artist_name" placeholder="Enter the artist's full name" required>
                             </div>
                             <div class="form-group">
                                 <label for="artistAlias">Stage Name / Alias</label>
-                                <input type="text" id="artistAlias" placeholder="Enter your stage name or alias" required>
+                                <input type="text" id="artistAlias" name="stage_name" placeholder="Optional stage name or alias">
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="phone">Phone Number</label>
-                                <input type="tel" id="phone" placeholder="071 000 0000" required>
+                                <input type="tel" id="phone" name="phone_number" placeholder="071 000 0000" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email Address</label>
-                                <input type="email" id="email" placeholder="name@example.com" required>
+                                <input type="email" id="email" name="email_address" placeholder="name@example.com" required>
                             </div>
                         </div>
 
                         <div class="form-group category-picker-group">
                             <label class="premium-label">Choose Award Category</label>
-                            <input type="hidden" id="selectedCategory" name="category" required>
+                            <input type="hidden" id="selectedCategory" name="award_category" required>
 
                             <div class="selected-category-shell">
                                 <div class="selected-category-pill" id="selectedCategoryPill">
@@ -215,13 +215,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="reason">Tell us why you should be considered (optional)</label>
-                            <textarea id="reason" rows="5" placeholder="Share your journey, standout moments, and what makes your work worthy of a spotlight."></textarea>
+                            <label for="motivation">Tell us why you should be considered (optional)</label>
+                            <textarea id="motivation" name="motivation" rows="3" placeholder="Share a brief note about your recent music milestones or journey..."></textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="socialLink">Facebook / Instagram Link</label>
-                            <input type="url" id="socialLink" placeholder="https://facebook.com/yourprofile" required>
+                            <input type="url" id="socialLink" name="social_link" placeholder="https://facebook.com/yourprofile" required>
                         </div>
 
                         <div class="form-group checkbox-group">
