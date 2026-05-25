@@ -1040,7 +1040,15 @@ body.overlay-open .page-shell > *:not(.categories-overlay) {
 }
 
 @media (max-width: 500px) {
-    .overlay-grid { grid-template-columns: 1fr; }
+    .overlay-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 0.8rem; 
+    }
+
+    .luxury-sub-card {
+        padding: 1.25rem 0.8rem;
+        font-size: 0.85rem;
+    }
 }
 
 .category-scroll-area {
@@ -1611,7 +1619,7 @@ body.overlay-open .page-shell > *:not(.categories-overlay) {
     }
 
     .parent-group-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .selected-category-shell {
