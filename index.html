@@ -169,7 +169,7 @@
                     <div class="form-intro reveal-on-scroll">
                         <p class="eyebrow">Artist Submission Form</p>
                         <h2 class="section-title">Submit your artist profile with confidence.</h2>
-                        <p class="section-subtitle">Upload your details, share your story, and submit your work for review by the Way Up team.</p>
+                        <p class="section-subtitle">Submit your nomination details, select your award category, and enter the spotlight for the WayUp Awards.</p>
 
                         <div class="info-strip">
                             <span><i class="fa-solid fa-circle-check"></i> Secure online submission</span>
@@ -186,8 +186,8 @@
                                 <input type="text" id="artistName" name="artist_name" placeholder="Enter the artist's full name" required>
                             </div>
                             <div class="form-group">
-                                <label for="artistAlias">Stage Name / Alias</label>
-                                <input type="text" id="artistAlias" name="stage_name" placeholder="Optional stage name or alias">
+                                <label for="artistAlias">Stage Name / Brand Name</label>
+                                <input type="text" id="artistAlias" name="stage_name" placeholder="Business name or stage name" required>
                             </div>
                         </div>
 
@@ -215,6 +215,11 @@
                             </div>
                         </div>
 
+                        <div class="form-group dynamic-field-container" id="dynamicFieldContainer">
+                            <label id="dynamicFieldLabel" for="dynamicDetails">Additional Details</label>
+                            <input type="text" id="dynamicDetails" name="category_specific_details" class="glow-input" placeholder="...">
+                        </div>
+
                         <div class="form-group">
                             <label for="motivation">Tell us why you should be considered (optional)</label>
                             <textarea id="motivation" name="motivation" rows="3" placeholder="Share a brief note about your recent music milestones or journey..."></textarea>
@@ -230,7 +235,7 @@
                             <label for="terms">I confirm that the information provided is accurate and that I consent to Way Up review and verification.</label>
                         </div>
 
-                        <button type="submit" class="btn btn-primary form-submit">Submit My Application</button>
+                        <button type="submit" class="btn btn-primary form-submit">Submit My Nomination</button>
                         <div id="formStatus" class="form-status" aria-live="polite"></div>
                     </form>
                 </div>
@@ -238,59 +243,140 @@
 
             <section id="gallery" class="section section-dark">
                 <div class="container">
-                    <div class="section-heading reveal-on-scroll">
-                        <p class="eyebrow">Media Gallery</p>
-                        <h2 class="section-title">Moments from the Way Up experience.</h2>
-                        <p class="section-subtitle">A visual story built from local imagery and campaign-ready highlights.</p>
-                    </div>
+                    <div class="gallery-premium-header reveal-on-scroll">
+                        <div class="gallery-premium-copy">
+                            <p class="eyebrow">Media Gallery</p>
+                            <h2 class="section-title">Moments from the Way Up experience.</h2>
+                            <p class="section-subtitle">A refined horizontal gallery with smooth auto-motion, directional controls, and a clean pop-out preview for every image.</p>
+                        </div>
 
-                    <div class="spotlight-layout gallery-spotlight">
-                        <div>
-                            <p class="eyebrow">Spotlight</p>
-                            <h2 class="section-title">A refined experience that feels as premium as the awards themselves.</h2>
-                            <p class="section-subtitle">Stay inspired with editorial visuals, standout imagery, and a submission process designed to feel effortless.</p>
-
-                            <div class="feature-grid">
-                                <div class="feature-item reveal-on-scroll">
-                                    <i class="fa-solid fa-crown"></i>
-                                    <div>
-                                        <h3>Curated prestige</h3>
-                                        <p>Luxury visuals, subtle motion, and premium storytelling throughout the journey.</p>
-                                    </div>
-                                </div>
-                                <div class="feature-item reveal-on-scroll">
-                                    <i class="fa-solid fa-shield-halved"></i>
-                                    <div>
-                                        <h3>Secure submissions</h3>
-                                        <p>Simple validation and fraud-conscious handling to protect submission integrity.</p>
-                                    </div>
-                                </div>
-                                <div class="feature-item reveal-on-scroll">
-                                    <i class="fa-solid fa-camera-retro"></i>
-                                    <div>
-                                        <h3>Local content</h3>
-                                        <p>Real imagery from your archive is used as high-end campaign-ready visuals.</p>
-                                    </div>
-                                </div>
+                        <div class="gallery-premium-badges">
+                            <div class="gallery-premium-badge">
+                                <span>Auto glide</span>
+                                <strong>Elegant motion with premium pacing</strong>
+                            </div>
+                            <div class="gallery-premium-badge">
+                                <span>Manual control</span>
+                                <strong>Back and forward arrows for quick browsing</strong>
+                            </div>
+                            <div class="gallery-premium-badge">
+                                <span>Click preview</span>
+                                <strong>Open a neat full-size image without leaving the page</strong>
+                            </div>
+                            <div class="gallery-premium-badge">
+                                <span>Curated finish</span>
+                                <strong>Consistent Way Up Awards pill styling across every card</strong>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="spotlight-gallery">
-                            <img src="Images/IMG-20260524-WA0001.jpg" alt="Award moment one">
-                            <img src="Images/IMG-20260524-WA0002.jpg" alt="Award moment two">
-                            <img src="Images/IMG-20260524-WA0003.jpg" alt="Award moment three">
+                    <div class="gallery-controls">
+                        <span class="gallery-pill">Way Up Awards</span>
+                        <div class="gallery-controls-buttons">
+                            <button type="button" class="gallery-scroll-btn" id="galleryScrollPrev" aria-label="Scroll gallery left">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <button type="button" class="gallery-scroll-btn" id="galleryScrollNext" aria-label="Scroll gallery right">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
                         </div>
                     </div>
 
-                    <div class="gallery-grid">
-                        <figure class="gallery-card tall reveal-on-scroll"><img src="Images/IMG-20260524-WA0006.jpg" alt="Local awards setup"></figure>
-                        <figure class="gallery-card reveal-on-scroll"><img src="Images/IMG-20260524-WA0007.jpg" alt="Event atmosphere"></figure>
-                        <figure class="gallery-card reveal-on-scroll"><img src="Images/IMG-20260524-WA0008.jpg" alt="Celebration scene"></figure>
-                        <figure class="gallery-card wide reveal-on-scroll"><img src="Images/IMG-20260524-WA0009.jpg" alt="Recognition moment"></figure>
-                        <figure class="gallery-card reveal-on-scroll"><img src="Images/IMG-20260524-WA0010.jpg" alt="Community engagement"></figure>
+                    <div class="gallery-marquee-shell">
+                        <div class="gallery-marquee-track" id="galleryMarqueeTrack">
+                            <button type="button" class="gallery-marquee-card" data-preview="Images/IMG-20260524-WA0001.jpg" data-title="Arrival energy" aria-label="Open arrival energy image">
+                                <span class="gallery-card-pill">Way Up Awards</span>
+                                <div class="gallery-card-frame">
+                                    <img src="Images/IMG-20260524-WA0001.jpg" alt="Red carpet arrival moment">
+                                </div>
+                            </button>
+                            <button type="button" class="gallery-marquee-card" data-preview="Images/IMG-20260524-WA0002.jpg" data-title="Recognition moment" aria-label="Open recognition moment image">
+                                <span class="gallery-card-pill">Way Up Awards</span>
+                                <div class="gallery-card-frame">
+                                    <img src="Images/IMG-20260524-WA0002.jpg" alt="Award presentation moment">
+                                </div>
+                            </button>
+                            <button type="button" class="gallery-marquee-card" data-preview="Images/IMG-20260524-WA0004.jpg" data-title="Shared excitement" aria-label="Open shared excitement image">
+                                <span class="gallery-card-pill">Way Up Awards</span>
+                                <div class="gallery-card-frame">
+                                    <img src="Images/IMG-20260524-WA0004.jpg" alt="Community celebration scene">
+                                </div>
+                            </button>
+                            <button type="button" class="gallery-marquee-card" data-preview="Images/IMG-20260524-WA0006.jpg" data-title="Premium staging" aria-label="Open premium staging image">
+                                <span class="gallery-card-pill">Way Up Awards</span>
+                                <div class="gallery-card-frame">
+                                    <img src="Images/IMG-20260524-WA0006.jpg" alt="Curated stage setup">
+                                </div>
+                            </button>
+                            <button type="button" class="gallery-marquee-card" data-preview="Images/IMG-20260524-WA0007.jpg" data-title="Pure momentum" aria-label="Open pure momentum image">
+                                <span class="gallery-card-pill">Way Up Awards</span>
+                                <div class="gallery-card-frame">
+                                    <img src="Images/IMG-20260524-WA0007.jpg" alt="Crowd reaction and celebration">
+                                </div>
+                            </button>
+                            <button type="button" class="gallery-marquee-card" data-preview="Images/IMG-20260524-WA0009.jpg" data-title="Every detail counts" aria-label="Open every detail counts image">
+                                <span class="gallery-card-pill">Way Up Awards</span>
+                                <div class="gallery-card-frame">
+                                    <img src="Images/IMG-20260524-WA0009.jpg" alt="Close-up of the celebration">
+                                </div>
+                            </button>
+
+                            <button type="button" class="gallery-marquee-card" data-preview="Images/IMG-20260524-WA0001.jpg" data-title="Arrival energy" aria-label="Open duplicate arrival energy image">
+                                <span class="gallery-card-pill">Way Up Awards</span>
+                                <div class="gallery-card-frame">
+                                    <img src="Images/IMG-20260524-WA0001.jpg" alt="Red carpet arrival moment duplicate">
+                                </div>
+                            </button>
+                            <button type="button" class="gallery-marquee-card" data-preview="Images/IMG-20260524-WA0002.jpg" data-title="Recognition moment" aria-label="Open duplicate recognition moment image">
+                                <span class="gallery-card-pill">Way Up Awards</span>
+                                <div class="gallery-card-frame">
+                                    <img src="Images/IMG-20260524-WA0002.jpg" alt="Award presentation moment duplicate">
+                                </div>
+                            </button>
+                            <button type="button" class="gallery-marquee-card" data-preview="Images/IMG-20260524-WA0004.jpg" data-title="Shared excitement" aria-label="Open duplicate shared excitement image">
+                                <span class="gallery-card-pill">Way Up Awards</span>
+                                <div class="gallery-card-frame">
+                                    <img src="Images/IMG-20260524-WA0004.jpg" alt="Community celebration scene duplicate">
+                                </div>
+                            </button>
+                            <button type="button" class="gallery-marquee-card" data-preview="Images/IMG-20260524-WA0006.jpg" data-title="Premium staging" aria-label="Open duplicate premium staging image">
+                                <span class="gallery-card-pill">Way Up Awards</span>
+                                <div class="gallery-card-frame">
+                                    <img src="Images/IMG-20260524-WA0006.jpg" alt="Curated stage setup duplicate">
+                                </div>
+                            </button>
+                            <button type="button" class="gallery-marquee-card" data-preview="Images/IMG-20260524-WA0007.jpg" data-title="Pure momentum" aria-label="Open duplicate pure momentum image">
+                                <span class="gallery-card-pill">Way Up Awards</span>
+                                <div class="gallery-card-frame">
+                                    <img src="Images/IMG-20260524-WA0007.jpg" alt="Crowd reaction and celebration duplicate">
+                                </div>
+                            </button>
+                            <button type="button" class="gallery-marquee-card" data-preview="Images/IMG-20260524-WA0009.jpg" data-title="Every detail counts" aria-label="Open duplicate every detail counts image">
+                                <span class="gallery-card-pill">Way Up Awards</span>
+                                <div class="gallery-card-frame">
+                                    <img src="Images/IMG-20260524-WA0009.jpg" alt="Close-up of the celebration duplicate">
+                                </div>
+                            </button>
+                        </div>
                     </div>
+
+                    <p class="gallery-marquee-footnote">Use the arrows to browse manually or click any card to open a neat premium preview.</p>
                 </div>
             </section>
+
+            <div class="gallery-preview-overlay" id="galleryPreviewOverlay" aria-hidden="true">
+                <div class="gallery-preview-panel">
+                    <div class="preview-topbar">
+                        <button type="button" class="gallery-preview-close" id="galleryPreviewClose" aria-label="Close preview">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <div class="preview-frame">
+                        <img id="galleryPreviewImage" src="Images/IMG-20260524-WA0001.jpg" alt="Expanded Way Up Awards preview">
+                        <span class="gallery-preview-caption" id="galleryPreviewTitle">Way Up Local Awards</span>
+                    </div>
+                </div>
+            </div>
 
             <section id="winners" class="section">
                 <div class="container">
@@ -387,13 +473,11 @@
         </div>
 
         <footer class="site-footer">
-            <p>© 2026 Way Up Local Awards. Crafted to celebrate local excellence.</p>
+            <p>© 2026 Way Up Local Awards. Designed by Kentronix.</p>
         </footer>
     </div>
 
-    <a href="https://wa.me/27110000000" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
+ 
 
     <script src="JS/main.js?v=20260524-1" defer></script>
 </body>

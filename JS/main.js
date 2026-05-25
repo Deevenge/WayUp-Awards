@@ -92,6 +92,10 @@ function initFormHandler() {
                 form.reset();
                 if (hiddenInput) hiddenInput.value = '';
                 if (label) label.textContent = 'No category selected';
+                const dynamicContainer = document.getElementById('dynamicFieldContainer');
+                const dynamicInput = document.getElementById('dynamicDetails');
+                if (dynamicContainer) dynamicContainer.classList.remove('active');
+                if (dynamicInput) dynamicInput.placeholder = '...';
             } else {
                 status.textContent = 'Oops! There was a problem with your submission. Please try again.';
             }
@@ -99,7 +103,7 @@ function initFormHandler() {
             status.textContent = 'Submission error. Please check your connection and try again.';
         }).finally(() => {
             submitBtn.disabled = false;
-            submitBtn.textContent = 'Submit My Application';
+            submitBtn.textContent = 'Submit My Nomination';
         });
     });
 }
@@ -263,6 +267,31 @@ function initLuxuryOverlay() {
                 card.addEventListener('click', () => {
                     formInput.value = item;
                     label.textContent = item;
+
+                    // Smart logic for dynamic text box
+                    const dynamicContainer = document.getElementById('dynamicFieldContainer');
+                    const dynamicLabel = document.getElementById('dynamicFieldLabel');
+                    const dynamicInput = document.getElementById('dynamicDetails');
+
+                    const songCats = ["Song of the Year", "Best Collaboration", "Music Video of the Year", "Rising Star Award"];
+                    const performerCats = ["Best Local DJ", "Best Vocalist", "Artist of the Year", "Best Local Artist"];
+
+                    if (songCats.includes(item)) {
+                        dynamicContainer.classList.add('active');
+                        dynamicLabel.textContent = "Song Title, Release Date & Streaming Link (Required)";
+                        dynamicInput.placeholder = "deevege-already, 2025-12-25,,https://spotify......";
+                        dynamicInput.required = true;
+                    } else if (performerCats.includes(item)) {
+                        dynamicContainer.classList.add('active');
+                        dynamicLabel.textContent = "Links to Live Sets, Social Portfolios, or Mixes (Optional)";
+                        dynamicInput.placeholder = "e.g. https://soundcloud.com/your-mix, https://instagram.com/portfolio";
+                        dynamicInput.required = false;
+                    } else {
+                        dynamicContainer.classList.remove('active');
+                        dynamicInput.placeholder = "...";
+                        dynamicInput.required = false;
+                    }
+
                     closeOverlay();
                     if (formElement) formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 });
@@ -356,6 +385,142 @@ function initHeroSlideshow() {
     }, 4000); // Transitions every 4 seconds
 }
 
+function initGalleryMarquee() {
+    const track = document.getElementById('galleryMarqueeTrack');
+    const prevBtn = document.getElementById('galleryScrollPrev');
+    const nextBtn = document.getElementById('galleryScrollNext');
+
+    if (!track || !prevBtn || !nextBtn) return;
+
+    const cards = track.querySelectorAll('.gallery-marquee-card');
+    if (cards.length === 0) return;
+
+    // Move controls inside the shell for absolute positioning on the sides
+    const shell = track.parentElement;
+    if (shell) {
+        shell.appendChild(prevBtn);
+        shell.appendChild(nextBtn);
+    }
+
+    let cardStep = 0;
+    let offset = 0;
+    let autoPaused = false;
+    let resumeTimer = null;
+    let animationFrame = null;
+
+    const measureStep = () => {
+        const gap = parseFloat(getComputedStyle(track).gap || '16') || 16;
+        const card = cards[0];
+        cardStep = Math.ceil(card.getBoundingClientRect().width + gap);
+    };
+
+    const getWrapWidth = () => track.scrollWidth / 2;
+
+    const syncTransform = () => {
+        track.style.transform = `translate3d(${offset}px, 0, 0)`;
+    };
+
+    const pauseAuto = () => {
+        autoPaused = true;
+        clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(() => {
+            autoPaused = false;
+        }, 4200);
+    };
+
+    const moveBy = (direction) => {
+        if (!cardStep) {
+            measureStep();
+        }
+
+        const wrapWidth = getWrapWidth();
+        offset += direction * cardStep;
+
+        if (offset > 0) {
+            offset = -wrapWidth + 1;
+        }
+
+        if (offset < -wrapWidth) {
+            offset = 0;
+        }
+
+        syncTransform();
+        pauseAuto();
+    };
+
+    const frameLoop = () => {
+        if (!autoPaused) {
+            offset -= 0.85;
+            const wrapWidth = getWrapWidth();
+
+            if (offset <= -wrapWidth) {
+                offset = 0;
+            }
+
+            syncTransform();
+        }
+
+        animationFrame = requestAnimationFrame(frameLoop);
+    };
+
+    prevBtn.addEventListener('click', () => moveBy(1));
+    nextBtn.addEventListener('click', () => moveBy(-1));
+
+    window.addEventListener('resize', () => {
+        measureStep();
+        syncTransform();
+    });
+
+    measureStep();
+    syncTransform();
+    animationFrame = requestAnimationFrame(frameLoop);
+}
+
+function initGalleryPreview() {
+    const overlay = document.getElementById('galleryPreviewOverlay');
+    const closeBtn = document.getElementById('galleryPreviewClose');
+    const previewImage = document.getElementById('galleryPreviewImage');
+    const previewTitle = document.getElementById('galleryPreviewTitle');
+    const cards = document.querySelectorAll('.gallery-marquee-card');
+
+    if (!overlay || !closeBtn || !previewImage || !previewTitle || cards.length === 0) {
+        return;
+    }
+
+    const closePreview = () => {
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('gallery-preview-open');
+    };
+
+    const openPreview = (card) => {
+        previewImage.src = card.dataset.preview || '';
+        previewTitle.textContent = 'Way Up Local Awards';
+        previewImage.alt = 'Expanded Way Up Local Awards preview';
+        overlay.classList.add('active');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('gallery-preview-open');
+    };
+
+    cards.forEach((card) => {
+        card.addEventListener('click', () => openPreview(card));
+    });
+
+    closeBtn.addEventListener('click', closePreview);
+
+    overlay.addEventListener('click', (event) => {
+        if (event.target === overlay) {
+            closePreview();
+        }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && overlay.classList.contains('active')) {
+            closePreview();
+        }
+    });
+}
+
 window.addEventListener('DOMContentLoaded', () => {
     initCountdown();
     initAccordion();
@@ -366,4 +531,6 @@ window.addEventListener('DOMContentLoaded', () => {
     initFormCategoryPicker();
     initScrollAnimations();
     initHeroSlideshow();
+    initGalleryMarquee();
+    initGalleryPreview();
 });
