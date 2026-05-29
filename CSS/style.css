@@ -2247,6 +2247,16 @@ body.winners-modal-open {
     color: var(--muted);
 }
 
+.contact-card a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.contact-card a:hover {
+    color: var(--gold-soft);
+}
+
 .social-links {
     display: flex;
     gap: 1rem;
