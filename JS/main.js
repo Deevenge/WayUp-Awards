@@ -679,6 +679,20 @@ function initWinnersCarousel() {
             description: 'Awarded for "Wow", a hip hop track with presence, energy, and memorable impact.',
             image: 'Images/collin.jpg',
             alt: 'Collin Omen'
+        },
+        {
+            category: 'Best Female Fashion Icon',
+            name: 'Mozandada',
+            description: 'Recognised for style, confidence, and a standout fashion presence.',
+            image: 'Images/mozandada.jpg',
+            alt: 'Mozandada'
+        },
+        {
+            category: 'Best Nail Art Tech',
+            name: 'Glam Goddess',
+            description: 'Celebrated for detail, creativity, and polished nail artistry.',
+            image: 'Images/glam goddess.jpg',
+            alt: 'Glam Goddess'
         }
     ];
 

@@ -2,7 +2,7 @@ No-Code Form Backends (Easiest & Fastest Setup)If you want to launch the site in
 <form action="https://formspree.io" method="POST" enctype="multipart/form-data">
 
 git add .
-git commit -m "updated the form"
+git commit -m "fixed the winners page"
 git push
 
 
