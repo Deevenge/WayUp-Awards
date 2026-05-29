@@ -143,11 +143,14 @@ function initFormHandler() {
         const submitBtn = form.querySelector('.form-submit');
         const hiddenInput = document.getElementById('selectedCategory');
         const label = document.getElementById('selectedCategoryLabel');
+        const artistNameInput = document.getElementById('artistName');
+        const artistName = artistNameInput?.value?.trim() || 'there';
 
         const formData = new FormData(form);
 
         submitBtn.disabled = true;
         submitBtn.textContent = 'Processing Securely...';
+        status.className = 'form-status loading';
         status.textContent = 'Your submission is being verified securely.';
 
         fetch(form.action, {
@@ -158,15 +161,18 @@ function initFormHandler() {
             }
         }).then(response => {
             if (response.ok) {
-                status.textContent = 'Thank you! Your submission has been securely received and verified.';
+                status.className = 'form-status success';
+                status.textContent = `Thank you, ${artistName}. Your submission has been securely received. Our team will review it and be in touch within the next few days.`;
                 form.reset();
                 if (hiddenInput) hiddenInput.value = '';
                 if (label) label.textContent = 'No category selected';
                 updateDynamicCategoryFields();
             } else {
-                status.textContent = 'Oops! There was a problem with your submission. Please try again.';
+                status.className = 'form-status error';
+                status.textContent = 'Oops, we could not complete your submission right now. Please check your details and try again.';
             }
         }).catch(error => {
+            status.className = 'form-status error';
             status.textContent = 'Submission error. Please check your connection and try again.';
         }).finally(() => {
             submitBtn.disabled = false;
