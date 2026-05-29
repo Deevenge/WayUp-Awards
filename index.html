@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="CSS/style.css?v=20260525-1">
+    <link rel="stylesheet" href="CSS/style.css?v=20260529-1">
 </head>
 <body>
     <div class="page-shell">
@@ -70,7 +70,7 @@
 
                     <div class="hero-stats">
                         <div class="hero-stat">
-                            <strong>12</strong>
+                            <strong>25</strong>
                             <span>award categories</span>
                         </div>
                         <div class="hero-stat">
@@ -249,8 +249,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="socialLink">Facebook / Instagram Link</label>
-                            <input type="url" id="socialLink" name="social_link" placeholder="https://facebook.com/yourprofile" required>
+                            <label for="socialLink">Facebook / Instagram handle</label>
+                            <input type="text" id="socialLink" name="social_link" placeholder="@yourhandle" required>
                         </div>
 
                         <div class="form-group checkbox-group">
@@ -270,7 +270,7 @@
                         <div class="gallery-premium-copy">
                             <p class="eyebrow">Media Gallery</p>
                             <h2 class="section-title">Moments from the Way Up experience.</h2>
-                            <p class="section-subtitle">A refined horizontal gallery with smooth auto-motion, directional controls, and a clean pop-out preview for every image.</p>
+                            <p class="section-subtitle">Moments from the Way Up Awards journey, from red-carpet energy to the celebrations that make the night unforgettable.</p>
                         </div>
 
                         <div class="gallery-premium-badges">
@@ -413,40 +413,45 @@
                 </div>
             </div>
 
-            <section id="winners" class="section">
-                <div class="container">
-                    <div class="section-heading">
-                        <p class="eyebrow">Hall of Fame</p>
-                        <h2 class="section-title">Past winners and community legends.</h2>
-                        <p class="section-subtitle">A closer look at the names and stories that helped shape previous award seasons.</p>
+            <section id="winners" class="section winners-section">
+                <div class="container winners-launch">
+                    <p class="eyebrow">Hall of Fame</p>
+                    <h2 class="section-title">2025 Winners</h2>
+                    <p class="section-subtitle">A refined winner showcase with every honouree presented one at a time.</p>
+                    <button class="btn btn-primary winners-view-btn" type="button" id="openWinnersModal">
+                        <i class="fa-solid fa-trophy"></i>
+                        View Winners
+                    </button>
+                </div>
+            </section>
+
+            <div class="winners-modal" id="winnersModal" aria-hidden="true">
+                <div class="winners-modal-card" role="dialog" aria-modal="true" aria-labelledby="winnerModalName">
+                    <button class="winners-modal-close" type="button" id="closeWinnersModal" aria-label="Close winners showcase">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+
+                    <div class="winners-modal-image">
+                        <img id="winnerModalImage" src="Images/malome.jpg" alt="Malome AJ">
                     </div>
 
-                    <div class="accordion">
-                        <div class="accordion-item open">
-                            <button class="accordion-header" type="button">
-                                <span>2025 Winners</span>
-                                <i class="fa-solid fa-chevron-down"></i>
-                            </button>
-                            <div class="accordion-content">
-                                <p><strong>Best Entrepreneur:</strong> John Doe — Innovative solutions that transformed local business operations.</p>
-                                <p><strong>Best Local Artist:</strong> Jane Smith — A creative force behind some of the most memorable community exhibitions.</p>
-                                <p><strong>Best Community Leader:</strong> Amina Patel — A champion of youth development and local collaboration.</p>
-                            </div>
-                        </div>
+                    <div class="winners-modal-content">
+                        <span class="winner-modal-category" id="winnerModalCategory">Best MC of the year</span>
+                        <h3 id="winnerModalName">Malome AJ</h3>
+                        <p id="winnerModalDescription">Commanding the stage with presence, polish, and unforgettable crowd energy.</p>
 
-                        <div class="accordion-item">
-                            <button class="accordion-header" type="button">
-                                <span>2024 Winners</span>
-                                <i class="fa-solid fa-chevron-down"></i>
+                        <div class="winners-modal-controls">
+                            <button type="button" class="winner-arrow" id="winnerPrev" aria-label="Previous winner">
+                                <i class="fa-solid fa-arrow-left"></i>
                             </button>
-                            <div class="accordion-content">
-                                <p><strong>Best Small Business:</strong> Glow & Grow Studio — Elevated customer experience and community service.</p>
-                                <p><strong>Best Teacher:</strong> Thabo Mokoena — A dedicated mentor shaping learning and future leadership.</p>
-                            </div>
+                            <span class="winner-counter" id="winnerCounter">1 / 11</span>
+                            <button type="button" class="winner-arrow" id="winnerNext" aria-label="Next winner">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
 
             <section id="contact" class="section section-dark">
                 <div class="container contact-grid">
@@ -461,7 +466,7 @@
                         </div>
                         <div class="contact-card">
                             <h3><i class="fa-solid fa-envelope"></i> Email</h3>
-                            <p>hello@wayupawards.co.za</p>
+                            <p>keohitlhetsel16@gmail.com</p>
                         </div>
                         <div class="contact-card">
                             <h3><i class="fa-solid fa-phone"></i> Phone</h3>
@@ -514,6 +519,6 @@
 
  
 
-    <script src="JS/main.js?v=20260525-1" defer></script>
+    <script src="JS/main.js?v=20260529-2" defer></script>
 </body>
 </html>

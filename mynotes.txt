@@ -2,5 +2,32 @@ No-Code Form Backends (Easiest & Fastest Setup)If you want to launch the site in
 <form action="https://formspree.io" method="POST" enctype="multipart/form-data">
 
 git add .
-git commit -m "updated the gallery section"
+git commit -m "updated the form"
 git push
+
+
+List of winners for 2025 award ceremony. 
+
+1. Best MC of the year - Malome AJ 
+2. Best photographer of the year - Tamati ya chillis 
+3. Best Male DJ of the year - Vino Torric  
+4. Best Female Dj of the year - Mizzy Mellow
+5. Best Foodoutlet of the year - Food by Buffalo 
+
+2024 LIST OF WINNERS 
+
+1. BEST GOSPEL ARTSIT OF THE YEAR - Mj Mvala 
+2. BEST CLAP N TAP GROUP - Rock of ages artist development 
+3. BEST POET - MOLODI WA POKO bro can we
+4. BEST TRADITIONAL GROUP - BAGAKA YOUTH COMBINATION 
+5. BEST DJ OF THE YEAR - PRO BISTO
+
+best female fashion icon-mozandada
+ Best Pop Artist of the year - Teekay Music
+  NEO KGOSI - KASI LIFE TIME ACHIEVEMENT AWARD
+   BEST COMMUNITY HERO - MOHAU TUTUBALA 
+   Male Fashion Icon of the year  - Krish Sihle 
+    Best Influencer of the year - Temoso Gabs
+     Best Hip Hop Song of the year - Collin Omen _ Wow 
+    
+     Best Nail Art Tech - Glam Goddess 

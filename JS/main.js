@@ -1,4 +1,5 @@
 function initCountdown() {
+    const countdownContainer = document.querySelector('.countdown-container');
     const countdownEls = {
         days: document.getElementById('days'),
         hours: document.getElementById('hours'),
@@ -10,8 +11,7 @@ function initCountdown() {
         return;
     }
 
-    const eventDate = new Date();
-    eventDate.setMonth(eventDate.getMonth() + 6);
+    const eventDate = new Date(2026, 9, 10, 0, 0, 0);
 
     const updateTimer = () => {
         const now = new Date().getTime();
@@ -19,10 +19,10 @@ function initCountdown() {
 
         if (difference <= 0) {
             clearInterval(timerInterval);
-            countdownEls.days.textContent = '00';
-            countdownEls.hours.textContent = '00';
-            countdownEls.minutes.textContent = '00';
-            countdownEls.seconds.textContent = '00';
+            if (countdownContainer) {
+                countdownContainer.classList.add('countdown-arrived');
+                countdownContainer.innerHTML = '<p>The day has arrived!!</p>';
+            }
             return;
         }
 
@@ -601,6 +601,169 @@ function initGalleryPreview() {
     });
 }
 
+function initWinnersCarousel() {
+    const winners = [
+        {
+            category: 'Best MC of the year',
+            name: 'Malome AJ',
+            description: 'Commanding the stage with presence, polish, and unforgettable crowd energy.',
+            image: 'Images/malome.jpg',
+            alt: 'Malome AJ'
+        },
+        {
+            category: 'Best photographer of the year',
+            name: 'Tamati ya chillis',
+            description: 'Capturing the season with sharp eyes, rich detail, and a signature visual voice.',
+            image: 'Images/tamati.jpg',
+            alt: 'Tamati ya chillis'
+        },
+        {
+            category: 'Best Male DJ of the year',
+            name: 'Vino Torric',
+            description: 'Setting the tempo with premium mixes and dance-floor confidence.',
+            image: 'Images/vino t.jpg',
+            alt: 'Vino Torric'
+        },
+        {
+            category: 'Best Female DJ of the year',
+            name: 'Mizzy Mellow',
+            description: 'Bringing elegance, rhythm, and a standout sound to every set.',
+            image: 'Images/mizzy.jpg',
+            alt: 'Mizzy Mellow'
+        },
+        {
+            category: 'Best Foodoutlet of the year',
+            name: 'Food by Buffalo',
+            description: 'Serving flavour, consistency, and the kind of local love people remember.',
+            image: 'Images/amo.jpg',
+            alt: 'Food by Buffalo'
+        },
+        {
+            category: 'Best Pop Artist of the year',
+            name: 'Teekay Music',
+            description: 'A standout pop voice bringing melody, presence, and fresh local star power.',
+            image: 'Images/teko.jpg',
+            alt: 'Teekay Music'
+        },
+        {
+            category: 'Kasi Life Time Achievement Award',
+            name: 'NEO KGOSI',
+            description: 'Honoured for lasting impact, community legacy, and a life of meaningful contribution.',
+            image: 'Images/neiza.jpg',
+            alt: 'NEO KGOSI'
+        },
+        {
+            category: 'Best Community Hero',
+            name: 'MOHAU TUTUBALA',
+            description: 'Recognised for service, courage, and dedication to uplifting the community.',
+            image: 'Images/mohau.jpg',
+            alt: 'MOHAU TUTUBALA'
+        },
+        {
+            category: 'Male Fashion Icon of the year',
+            name: 'Krish Sihle',
+            description: 'Celebrated for sharp style, confidence, and an unmistakable fashion identity.',
+            image: 'Images/krish.jpg',
+            alt: 'Krish Sihle'
+        },
+        {
+            category: 'Best Influencer of the year',
+            name: 'Temoso Gabs',
+            description: 'Leading conversations with personality, reach, and a strong connection to the audience.',
+            image: 'Images/gabs.jpg',
+            alt: 'Temoso Gabs'
+        },
+        {
+            category: 'Best Hip Hop Song of the year',
+            name: 'Collin Omen - Wow',
+            description: 'Awarded for "Wow", a hip hop track with presence, energy, and memorable impact.',
+            image: 'Images/collin.jpg',
+            alt: 'Collin Omen'
+        }
+    ];
+
+    const openBtn = document.getElementById('openWinnersModal');
+    const modal = document.getElementById('winnersModal');
+    const closeBtn = document.getElementById('closeWinnersModal');
+    const prevBtn = document.getElementById('winnerPrev');
+    const nextBtn = document.getElementById('winnerNext');
+    const image = document.getElementById('winnerModalImage');
+    const category = document.getElementById('winnerModalCategory');
+    const name = document.getElementById('winnerModalName');
+    const description = document.getElementById('winnerModalDescription');
+    const counter = document.getElementById('winnerCounter');
+
+    if (!openBtn || !modal || !closeBtn || !prevBtn || !nextBtn || !image || !category || !name || !description || !counter) {
+        return;
+    }
+
+    let currentIndex = 0;
+
+    const renderWinner = () => {
+        const winner = winners[currentIndex];
+
+        image.style.animation = 'none';
+        image.offsetHeight;
+        image.style.animation = '';
+
+        image.src = winner.image;
+        image.alt = winner.alt;
+        category.textContent = winner.category;
+        name.textContent = winner.name;
+        description.textContent = winner.description;
+        counter.textContent = `${currentIndex + 1} / ${winners.length}`;
+    };
+
+    const openModal = () => {
+        renderWinner();
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('winners-modal-open');
+        nextBtn.focus();
+    };
+
+    const closeModal = () => {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('winners-modal-open');
+        openBtn.focus();
+    };
+
+    const moveWinner = (direction) => {
+        currentIndex = (currentIndex + direction + winners.length) % winners.length;
+        renderWinner();
+    };
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    prevBtn.addEventListener('click', () => moveWinner(-1));
+    nextBtn.addEventListener('click', () => moveWinner(1));
+
+    modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (!modal.classList.contains('active')) {
+            return;
+        }
+
+        if (event.key === 'Escape') {
+            closeModal();
+        }
+
+        if (event.key === 'ArrowLeft') {
+            moveWinner(-1);
+        }
+
+        if (event.key === 'ArrowRight') {
+            moveWinner(1);
+        }
+    });
+}
+
 window.addEventListener('DOMContentLoaded', () => {
     initCountdown();
     initAccordion();
@@ -613,4 +776,5 @@ window.addEventListener('DOMContentLoaded', () => {
     initHeroSlideshow();
     initGalleryMarquee();
     initGalleryPreview();
+    initWinnersCarousel();
 });
